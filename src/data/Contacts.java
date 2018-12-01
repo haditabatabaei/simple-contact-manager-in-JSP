@@ -118,20 +118,32 @@ public class Contacts {
         }
     }
 
+    public boolean editContact(int index,String newName,String newPhone){
+        Contact toEdit = contactsArrayList.get(index);
+        toEdit.setName(newName);
+        toEdit.setPhoneNum(newPhone);
+        reWriteContactList();
+        return true;
+    }
+
+    private void reWriteContactList(){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            StringBuilder builder = new StringBuilder();
+            for (Contact contact : contactsArrayList) {
+                builder.append(contact.toString() + "\n");
+            }
+            writer.write(builder.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean removeIndex(int index) {
         if (contactsArrayList.size() > 0) {
             contactsArrayList.remove(index);
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                StringBuilder builder = new StringBuilder();
-                for (Contact contact : contactsArrayList) {
-                    builder.append(contact.toString() + "\n");
-                }
-                writer.write(builder.toString());
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            reWriteContactList();
             return true;
         } else
             return false;
