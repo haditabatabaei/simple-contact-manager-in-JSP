@@ -83,14 +83,14 @@
                             out.print("<form action=\"index.jsp\" method=\"post\" class=\"w-100\" >");
                             out.print("<div class=\"input-group mb-1\">");
                             out.print("<div class=\"input-group-prepend\">");
-                            out.print("<div class=\"input-group-text\">");
-                            out.print("<input type=\"checkbox\" disabled>");
+                            out.print("<div class=\"input-group-text bg-dark\">");
+                            out.print("<input type=\"checkbox\" class=\"bg-dark\" disabled >");
                             out.print("</div>");
                             out.print("</div>");
                             out.print("" +
-                                    "<input type=\"text\" value=\"Contact Name\" class=\"form-control\" readonly>\n"
+                                    "<input type=\"text\" value=\"Contact Name\" class=\"form-control bg-dark text-light\" readonly>\n"
                                     +
-                                    "<input type=\"text\" value=\"Contact Phone Number\" class=\"form-control\" readonly>\n");
+                                    "<input type=\"text\" value=\"Contact Phone Number\" class=\"form-control bg-dark text-light\" readonly>\n");
                             out.print("</div>");
 
                             for (int i = 0; i < contacts.getContactsArrayList().size(); i++) {
