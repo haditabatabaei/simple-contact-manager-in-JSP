@@ -4,12 +4,14 @@
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Collections" %>
+<%@ page import="data.DataCenter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <%
     String title = "contact manager";
-    Contacts contacts = new Contacts(new File("C:\\Users\\Hadi\\Desktop\\contacts.txt"));
+    Contacts contacts = new Contacts(new File("C:\\Users\\Hadi-PC\\Desktop\\contacts.txt"));
+//    DataCenter dataCenter = new DataCenter();
 %>
 
 
@@ -34,6 +36,41 @@
 <section class="container">
     <div class="row">
         <div class="col-md-4">
+            <% if(session.getAttribute("userid") == null || session.getAttribute("userid").equals("")){%>
+            <form action="securityHandler.jsp" method="post">
+                <div class="form-group">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend w-100">
+                            <span class="input-group-text">Username:</span>
+                            <input type="text" class="form-control" id="userName" name="userName"
+                                   aria-describedby="userNameDesc"
+                                   placeholder="Username"
+                                   style="border-bottom-left-radius: 0;border-top-left-radius: 0">
+                        </div>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend w-100">
+                            <span class="input-group-text">Password:</span>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   aria-describedby="passwordDesc"
+                                   placeholder="Password"
+                                   style="border-bottom-left-radius: 0;border-top-left-radius: 0">
+                        </div>
+                        <button type="submit" class="btn btn-info mt-2 w-100">Login</button>
+                        <button onclick="window.location = 'register.jsp'" type="button" class="btn btn-primary mt-2 w-100">Register Here</button>
+                    </div>
+                </div>
+            </form>
+            <% }else { %>
+            <h3 class="text-center text-success"><%= "Welcome " + session.getAttribute("userid") %></h3>
+            <form action="logout.jsp" method="post">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger mt-2 w-100">Logout</button>
+                </div>
+            </form>
+            <% } %>
+
+            <hr>
             <form action="index.jsp" method="post">
                 <div class="form-group">
                     <div class="input-group mb-2">
